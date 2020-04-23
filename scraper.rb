@@ -14,6 +14,7 @@ class Scraper
     per_page = smartphone_listings.count
     total = parsed_page.css('hgroup.cf').css('h1').css('em').text.split('')[1..3].join('').to_i
     last_page = (total / per_page.to_f).round
+   
 
     while page <= last_page
       pagination_url = "https://www.mediamarkt.es/es/category/_smartphones-701189.html?searchParams=&sort=&view=PRODUCTLIST&page=#{page}"
@@ -26,10 +27,11 @@ class Scraper
 
       pagination_smartphone_listings.each do |smartphone_listing|
         smartphone = {
-          name: smartphone_listing.css('div.content').css('h2').css('a').text.strip,
+          name: smartphone_listing.css('div.content').css('h2').css('a').text.strip.split.drop(2).join(' '),
           price: '€' + smartphone_listing.css('div.price-box').css('div.small').text,
           url: 'https://www.mediamarkt.es' + smartphone_listing.css('div.content').css('a')[0].attributes['href'].value
         }
+
         smartphones << smartphone
         puts " #{smartphone[:name]} costs #{smartphone[:price]}"
         puts ''
