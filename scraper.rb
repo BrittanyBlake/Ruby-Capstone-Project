@@ -27,11 +27,11 @@ class Scraper
       pagination_smartphone_listings.each do |smartphone_listing|
         smartphone = {
           name: smartphone_listing.css('div.content').css('h2').css('a').text.strip,
-          price: '€' + smartphone_listing.css('div.price').text,
+          price: '€' + smartphone_listing.css('div.price-box').css('div.small').text,
           url: 'https://www.mediamarkt.es' + smartphone_listing.css('div.content').css('a')[0].attributes['href'].value
         }
         smartphones << smartphone
-        puts "Added #{smartphone[:name]}"
+        puts " #{smartphone[:name]} costs #{smartphone[:price]}"
         puts ''
       end
       page += 1
