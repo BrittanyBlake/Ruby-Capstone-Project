@@ -21,11 +21,9 @@ class Scraper
     total = parsed_page.css('hgroup.cf').css('h1').css('em').text.split('')[1..3].join('').to_i
     last_page = (total / per_page.to_f).round
 
-    
     puts "Total number of smartphones: #{total}".blue
     puts "Total number of pages: #{last_page}".blue
     puts "Number of Smartphones per page:#{per_page}".blue
-    
 
     while page <= last_page
       pagination_url = "https://www.mediamarkt.es/es/category/_smartphones-701189.html?searchParams=&sort=&view=PRODUCTLIST&page=#{page}"
