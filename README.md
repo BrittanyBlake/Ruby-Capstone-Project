@@ -63,7 +63,7 @@ Capstone projects are solo projects at the end of the each of the Microverse Mai
 
 ## LIVE VIDEO 
 
-https://github.com/BrittanyBlake/Ruby-Capstone-Project 
+https://www.loom.com/share/4f482da3e3584f9d8127de9c5def484e
 
 <!-- BUILD WITH -->
 ## Built With
