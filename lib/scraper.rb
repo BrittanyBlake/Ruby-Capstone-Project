@@ -13,6 +13,7 @@ class Scraper
     @smartphones = []
   end
 
+  # rubocop:disable Metrics/AbcSize
   def scrape
     smartphone_listings = parsed_page.css('div.product-wrapper')
     page = 1
@@ -51,4 +52,5 @@ class Scraper
       page += 1
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end
