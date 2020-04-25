@@ -52,7 +52,7 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
- Lint/RaiseException:
+Lint/RaiseException:
    Enabled: true
- Lint/StructNewOverride:
+Lint/StructNewOverride:
    Enabled: false
