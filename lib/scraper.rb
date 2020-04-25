@@ -20,7 +20,8 @@ class Scraper
 
     per_page = smartphone_listings.count
     total = parsed_page.css('hgroup.cf').css('h1').css('em').text.split('')[1..3].join('').to_i
-    last_page = (total / per_page.to_f).round
+    last_page = (total / per_page.to_f).ceil
+    
 
     puts "Total number of smartphones: #{total}".blue
     puts "Total number of pages: #{last_page}".blue
