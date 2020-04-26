@@ -1,5 +1,3 @@
-
-
 require 'nokogiri'
 require 'httparty'
 require 'byebug'
@@ -24,7 +22,7 @@ class Scraper
     per_page = smartphone_listings.count
     total = parsed_page.css('hgroup.cf').css('h1').css('em').text.split('')[1..3].join('').to_i
     last_page = (total / per_page.to_f).ceil
-    
+
     puts "Total number of smartphones: #{total}".blue
     puts "Total number of pages: #{last_page}".blue
     puts "Number of Smartphones per page:#{per_page}".blue
@@ -49,7 +47,6 @@ class Scraper
         csv(smartphones)
         smartphones << smartphone
         phone_info(smartphone)
-       
       end
       page += 1
     end
@@ -62,10 +59,9 @@ class Scraper
   end
 
   def csv(smartphones)
-    CSV.open("phones.csv", "w") do |csv|
-      smartphones.each { |phone| csv << [phone[:description], phone[:price]] } 
+    CSV.open('phones.csv', 'w') do |csv|
+      smartphones.each { |phone| csv << [phone[:description], phone[:price]] }
     end
   end
   # rubocop:enable Metrics/AbcSize
 end
-
