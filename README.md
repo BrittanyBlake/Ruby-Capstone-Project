@@ -82,7 +82,7 @@ In order to test my Web Scraper, you will need to ensure you have the latest ver
 
 ### Install
 
-To test Stack bot locally, clone the repository, navigate to it's containing directory, and run:
+To test the Web Scraper locally, clone the repository, navigate to it's containing directory, and run:
 
 #### Clone the repository and follow the steps to run the bot.
 
