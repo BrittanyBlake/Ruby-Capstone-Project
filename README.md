@@ -84,7 +84,7 @@ In order to test my Web Scraper, you will need to ensure you have the latest ver
 
 To test the Web Scraper locally, clone the repository, navigate to it's containing directory, and run:
 
-#### Clone the repository and follow the steps to run the bot.
+#### Clone the repository and follow the steps to run the scraper.
 
 - $ `git clone git@github.com:BrittanyBlake/Ruby-Capstone-Project.git`
 - $  bundle install    -> run this command to install the required gems
