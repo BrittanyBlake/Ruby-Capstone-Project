@@ -17,7 +17,6 @@ class Scraper
 
   # rubocop:disable Metrics/AbcSize
 
-  #split def scrape
   def scrape
     smartphone_listings = parsed_page.css('div.product-wrapper')
     page = 1
@@ -38,7 +37,6 @@ class Scraper
       puts ''
 
       pagination_unparsed_page = HTTParty.get(pagination_url)
-      #TSE SAYS HERE SHOULD BE PRIVATE
       pagination_parsed_page = Nokogiri::HTML(pagination_unparsed_page)
       pagination_smartphone_listings = pagination_parsed_page.css('div.product-wrapper')
 
@@ -48,7 +46,6 @@ class Scraper
           price: '€' + smartphone_listing.css('div.price-box').css('div.small').text,
           url: 'https://www.mediamarkt.es' + smartphone_listing.css('div.content').css('a')[0].attributes['href'].value
         }
-        #TSE THINKS HERE SHOULD END PRIVATE
         csv(smartphones)
         smartphones << smartphone
         phone_info(smartphone)
