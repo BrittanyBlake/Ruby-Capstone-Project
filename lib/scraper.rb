@@ -35,19 +35,7 @@ class Scraper
       puts ''
 
       pagination_unparsed_page = HTTParty.get(pagination_url)
-      pagination_parsed_page = Nokogiri::HTML(pagination_unparsed_page)
-      pagination_smartphone_listings = pagination_parsed_page.css('div.product-wrapper')
-
-      pagination_smartphone_listings.each do |smartphone_listing|
-        smartphone = {
-          description: smartphone_listing.css('div.content').css('h2').text.strip.split.drop(2).join(' ').gsub(/-/, ''),
-          price: '€' + smartphone_listing.css('div.price-box').css('div.small').text,
-          url: 'https://www.mediamarkt.es' + smartphone_listing.css('div.content').css('a')[0].attributes['href'].value
-        }
-        csv(smartphones)
-        smartphones << smartphone
-        phone_info(smartphone)
-      end
+      paginate(pagination_unparsed_page)      
       page += 1
     end
   end
@@ -62,6 +50,23 @@ class Scraper
     CSV.open('phones.csv', 'w') do |csv|
       smartphones.each { |phone| csv << [phone[:description], phone[:price]] }
     end
+  end
+
+  private
+  def paginate(pagination_unparsed_page)
+    pagination_parsed_page = Nokogiri::HTML(pagination_unparsed_page)
+      pagination_smartphone_listings = pagination_parsed_page.css('div.product-wrapper')
+
+      pagination_smartphone_listings.each do |smartphone_listing|
+        smartphone = {
+          description: smartphone_listing.css('div.content').css('h2').text.strip.split.drop(2).join(' ').gsub(/-/, ''),
+          price: '€' + smartphone_listing.css('div.price-box').css('div.small').text,
+          url: 'https://www.mediamarkt.es' + smartphone_listing.css('div.content').css('a')[0].attributes['href'].value
+        }
+        csv(smartphones)
+        smartphones << smartphone
+        phone_info(smartphone)
+      end
   end
   # rubocop:enable Metrics/AbcSize
 end
