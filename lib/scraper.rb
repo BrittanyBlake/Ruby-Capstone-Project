@@ -66,9 +66,7 @@ class Scraper
 
   def csv(smartphones)
     CSV.open("phones.csv", "w") do |csv|
-      smartphones.each do |phone|
-        csv << [phone[:description], phone[:price]] 
-      end
+      smartphones.each { |phone| csv << [phone[:description], phone[:price]] } 
     end
   end
   # rubocop:enable Metrics/AbcSize
